@@ -8,7 +8,7 @@ public class Player {
     }
 
     public void checkDeck() {
-        Deck.printDeck(deck);
+        Deck.printDeck(deck, true);
     }
 
     public List<Card> getDeck() {
@@ -17,5 +17,10 @@ public class Player {
 
     public void setDeck(List<Card> deck) {
         this.deck = deck;
+    }
+
+    public String getPositions(int numberOfCards, int value) {
+        // TODO:
+        return "1 3";
     }
 }

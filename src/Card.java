@@ -1,4 +1,6 @@
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
     private Rank rank;
     private Suit suit;
 
@@ -15,6 +17,10 @@ public class Card {
         this.rank = rank;
     }
 
+    public void setSuit(Suit suit) {
+        this.suit = suit;
+    }
+
     public Suit getSuit() {
         return suit;
     }
@@ -26,5 +32,11 @@ public class Card {
                 |   %s   |
                 |      %s|
                 """, suit.getSymbol(), rank.getRank(), suit.getSymbol());
+    }
+
+    public void printCard() {
+        System.out.println("|" + suit.getSymbol() + "\t|\t");
+        System.out.println("|  " + rank.getRank() + "  \t|\t");
+        System.out.println("|    " + suit.getSymbol() + "  |\t");
     }
 }

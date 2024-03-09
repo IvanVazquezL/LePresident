@@ -29,10 +29,10 @@ public class Deck {
             deck.remove(randomIndex);
         }
 
-        return deckForPlayer;
+        return sortByRanking(deckForPlayer);
     }
 
-    public static void printDeck(List<Card> deck) {
+    public static void printDeck(List<Card> deck, Boolean printPosition) {
         // Define the number of rows in each card (assuming each card has 3 rows)
         int numRows = 4;
         int numberOfCard = 1;
@@ -53,13 +53,27 @@ public class Deck {
                         System.out.print("|    " + card.getSuit().getSymbol() + "  |\t");
                         break;
                     case 3:
-                        System.out.print("    " + numberOfCard + "   \t");
+                        if (!printPosition) break;
+                        System.out.print("    " + numberOfCard + "    \t");
                         numberOfCard++;
                         break;
                 }
             }
             // Move to the next line after printing all cards in a row
             System.out.println();
+        }
+    }
+
+    public static void printDeckForCommandLine(List<Card> deck, Boolean printPosition) {
+        int position = 1;
+        String positionStr;
+        for (Card card : deck) {
+            positionStr = printPosition ? "    " + position  : "";
+            System.out.println("|" + card.getSuit().getSymbol() + "\t|");
+            System.out.println("|  " + card.getRank().getRank() + "  \t|" + positionStr);
+            System.out.println("|    " + card.getSuit().getSymbol() + "  |");
+            System.out.println("");
+            position++;
         }
     }
 
