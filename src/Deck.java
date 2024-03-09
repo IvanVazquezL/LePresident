@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Deck {
     private List<Card> deck = new ArrayList<>();;
@@ -36,7 +34,8 @@ public class Deck {
 
     public static void printDeck(List<Card> deck) {
         // Define the number of rows in each card (assuming each card has 3 rows)
-        int numRows = 3;
+        int numRows = 4;
+        int numberOfCard = 1;
 
         // Iterate over each row
         for (int i = 0; i < numRows; i++) {
@@ -53,10 +52,36 @@ public class Deck {
                     case 2:
                         System.out.print("|    " + card.getSuit().getSymbol() + "  |\t");
                         break;
+                    case 3:
+                        System.out.print("    " + numberOfCard + "   \t");
+                        numberOfCard++;
+                        break;
                 }
             }
             // Move to the next line after printing all cards in a row
             System.out.println();
         }
+    }
+
+    public static List<Card> sortByRanking(List<Card> deck) {
+        Collections.sort(deck, Comparator.comparingInt(card -> card.getRank().getValue()));
+        return deck;
+    }
+
+    public static List<Card> sortBySuitAndRanking(List<Card> deck) {
+        // Sort the cards by suit and then rank
+        Collections.sort(deck, new Comparator<Card>() {
+            @Override
+            public int compare(Card card1, Card card2) {
+                int suitComparison = card1.getSuit().compareTo(card2.getSuit());
+                if (suitComparison != 0) {
+                    return suitComparison;
+                }
+                // If suits are equal, compare by rank
+                return card1.getRank().compareTo(card2.getRank());
+            }
+        });
+
+        return deck;
     }
 }

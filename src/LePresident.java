@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class LePresident {
     private final Scanner scanner = new Scanner(System.in);
-    List<Player> players = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
+    private Player yourPlayer;
 
     LePresident() {}
 
@@ -21,9 +22,21 @@ public class LePresident {
             players.add(new Player(deckForPlayer));
         }
 
-        for( Player player : players) {
-            player.checkDeck();
-        }
-        //Deck.printDeck(deck);
+        yourPlayer = players.get(0);
+
+        System.out.println("Your deck");
+        yourPlayer.checkDeck();
+
+        System.out.println("""
+                1) Sort deck by ranking
+                2) Sort deck by suit and ranking
+                """);
+
+
+        yourPlayer.setDeck(Deck.sortByRanking(yourPlayer.getDeck()));
+        yourPlayer.checkDeck();
+
+        yourPlayer.setDeck(Deck.sortBySuitAndRanking(yourPlayer.getDeck()));
+        yourPlayer.checkDeck();
     }
 }
