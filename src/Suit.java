@@ -1,4 +1,6 @@
-public enum Suit {
+import java.io.Serializable;
+
+public enum Suit implements Serializable {
     CLUBS("\u001B[32m\u2663\u001B[0m"),
     DIAMONDS("\u001B[34m\u2666\u001B[0m"),
     HEARTS("\u001B[31m\u2665\u001B[0m"),
